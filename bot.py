@@ -1,5 +1,6 @@
-import os
-from pyrogram import Client 
+import os 
+import asyncio
+from pyrogram import Client, idle
 
 import logging
 import logging.config
@@ -18,6 +19,12 @@ user = Client(SESSION, API_ID, API_HASH)
 async def start():
   await user.start()
   logging.info('userbot started')
+  await bot.start()
   logging.info('Bot started')
+  idle()
+  await bot.stop() 
+  await user.stop()
+  logging.info('bot and user stopped')
 
-bot.run(start())
+loop = asyncio.get_event_loop()
+loop.run_until_complete(start()) 
