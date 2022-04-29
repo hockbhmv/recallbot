@@ -21,7 +21,7 @@ async def start():
   logging.info('userbot started')
   await bot.start()
   logging.info('Bot started')
-  idle()
+  await idle()
   await bot.stop() 
   await user.stop()
   logging.info('bot and user stopped')
