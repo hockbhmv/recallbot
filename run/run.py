@@ -13,9 +13,9 @@ async def start(bot, msg):
   
 @bot.on_message(filters.command('request') & filters.private)
 async def request(client, msg):
-   chat_id = await client.ask(chat_id=msg.chat.id, text='send your group id') 
-   if chat_id.text == "/cancel":
-       return await msg.reply('process cancelled !')
+   if len(message.command) < 2:
+      return await msg.reply_text('provide chat id or username')
+   chat_id = message.command[1]
    edit = await msg.reply('.......')
    try:
      group = await user.get_chat(chat_id)
