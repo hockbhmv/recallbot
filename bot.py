@@ -1,5 +1,6 @@
 import os 
-import asyncio
+import asyncio 
+from congfig import bot, user
 from pyrogram import Client, idle
 
 import logging
@@ -8,15 +9,7 @@ logging.config.fileConfig('logging.conf')
 logging.getLogger().setLevel(logging.INFO)
 logging.getLogger("pyrogram").setLevel(logging.ERROR)
 
-API_ID = os.environ.get('API_ID', '')
-API_HASH = os.environ.get('API_HASH', '') 
-SESSION = os.environ.get('SESSION', '')
-BOT_TOKEN = os.environ.get('BOT_TOKEN', '')
-
-bot = Client("recallbot", API_ID, API_HASH, plugins={"root": "run"}, bot_token=BOT_TOKEN)
-user = Client(SESSION, API_ID, API_HASH) 
-
-async def _start():
+async def start():
   await user.start()
   logging.info('userbot started')
   await bot.start()
@@ -27,4 +20,4 @@ async def _start():
   logging.info('bot and user stopped')
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(_start()) 
+loop.run_until_complete(start()) 
