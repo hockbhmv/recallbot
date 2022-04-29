@@ -1,6 +1,6 @@
 import os 
 import json
-from bot import bot, user 
+from config import bot, user 
 from pyrogram import filters
 
 @bot.on_message(filters.command('start') & filters.private)
