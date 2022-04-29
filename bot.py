@@ -1,4 +1,5 @@
-import asyncio 
+import asyncio  
+from pyrogram import idle
 from config import bot, user 
 
 import logging
