@@ -20,11 +20,11 @@ async def request(client, msg):
    try:
      group = await user.get_chat(chat_id)
    except Exception as e:
-     await msg.reply(e)
+     await msg.reply(e) 
+   LIST = []
+   total = 0
+   pling = 0
    async for member in user.iter_chat_members(group.id, filter="all"):
-      LIST = []
-      total = 0
-      pling = 0
       LIST.append(f"{member.first_name} ({member.id}) [@{member.username}]")
       total += 1
       pling += 1
