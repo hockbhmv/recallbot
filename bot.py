@@ -1,7 +1,5 @@
-import os 
 import asyncio 
-from congfig import bot, user
-from pyrogram import Client, idle
+from config import bot, user 
 
 import logging
 import logging.config
