@@ -21,7 +21,7 @@ async def request(client, msg):
      group = await user.get_chat(chat_id)
    except Exception as e:
      await msg.reply(e)
-   async for member in user.iter_chat_members(chat.id, filter="all"):
+   async for member in user.iter_chat_members(group.id, filter="all"):
       LIST = []
       total = 0
       pling = 0
