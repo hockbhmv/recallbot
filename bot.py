@@ -16,7 +16,7 @@ BOT_TOKEN = os.environ.get('BOT_TOKEN', '')
 bot = Client("recallbot", API_ID, API_HASH, plugins={"root": "run"}, bot_token=BOT_TOKEN)
 user = Client(SESSION, API_ID, API_HASH) 
 
-async def start():
+async def _start():
   await user.start()
   logging.info('userbot started')
   await bot.start()
@@ -27,4 +27,4 @@ async def start():
   logging.info('bot and user stopped')
 
 loop = asyncio.get_event_loop()
-loop.run_until_complete(start()) 
+loop.run_until_complete(_start()) 
