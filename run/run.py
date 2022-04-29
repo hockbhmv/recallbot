@@ -23,7 +23,7 @@ async def request(client, msg):
      total = 0
      pling = 0
      async for member in user.iter_chat_members(group.id, filter="all"):
-         LIST.append(f"{member.first_name} ({member.id}) [@{member.username}]")
+         LIST.append(f"{member.user.first_name} ({member.user.id}) [@{member.user.username}]")
          total += 1
          pling += 1
          if pling % 10 == 0:
