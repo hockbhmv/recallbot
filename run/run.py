@@ -1,15 +1,19 @@
 import os 
-import json
+import json 
+import logging
 from config import bot, user 
 from pyrogram import filters
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.ERROR) 
 
 @bot.on_message(filters.command('start') & filters.private)
 async def start(bot, msg):
    await msg.reply('Bot working successfully')
   
 @bot.on_message(filters.command('request') & filters.private)
-async def request(bot, msg):
-   chat_id = await bot.ask(chat_id=msg.chat.id, text='send your group id') 
+async def request(client, msg):
+   chat_id = await client.ask(chat_id=msg.chat.id, text='send your group id') 
    if chat_id.text == "/cancel":
        return await msg.reply('process cancelled !')
    edit = await msg.reply('.......')
@@ -28,6 +32,6 @@ async def request(bot, msg):
           await edit.edit(f"completed: {total}")
    with open(f"{msg.from_user.id}.json", "w+") as out:
         json.dump(LIST, out) 
-   await bot.send_document(msg.chat.id, f"{msg.from_user.id}.json", file_name="MEMBER.json", caption="MEMBERS DETAILS")
+   await client.send_document(msg.chat.id, f"{msg.from_user.id}.json", file_name="MEMBER.json", caption="MEMBERS DETAILS")
    os.remove(f"{msg.from_user.id}.json")
    await edit.edit(f"completed: {total}")
