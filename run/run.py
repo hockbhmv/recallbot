@@ -19,19 +19,19 @@ async def request(client, msg):
    edit = await msg.reply('.......')
    try:
      group = await user.get_chat(chat_id)
+     LIST = []
+     total = 0
+     pling = 0
+     async for member in user.iter_chat_members(group.id, filter="all"):
+         LIST.append(f"{member.first_name} ({member.id}) [@{member.username}]")
+         total += 1
+         pling += 1
+         if pling % 10 == 0:
+            await edit.edit(f"completed: {total}")
+     with open(f"{msg.from_user.id}.json", "w+") as out:
+          json.dump(LIST, out) 
+     await client.send_document(msg.chat.id, f"{msg.from_user.id}.json", file_name="MEMBER.json", caption="MEMBERS DETAILS")
+     os.remove(f"{msg.from_user.id}.json")
+     await edit.edit(f"completed: {total}")
    except Exception as e:
      await msg.reply(e) 
-   LIST = []
-   total = 0
-   pling = 0
-   async for member in user.iter_chat_members(group.id, filter="all"):
-      LIST.append(f"{member.first_name} ({member.id}) [@{member.username}]")
-      total += 1
-      pling += 1
-      if pling % 10 == 0:
-          await edit.edit(f"completed: {total}")
-   with open(f"{msg.from_user.id}.json", "w+") as out:
-        json.dump(LIST, out) 
-   await client.send_document(msg.chat.id, f"{msg.from_user.id}.json", file_name="MEMBER.json", caption="MEMBERS DETAILS")
-   os.remove(f"{msg.from_user.id}.json")
-   await edit.edit(f"completed: {total}")
