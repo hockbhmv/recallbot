@@ -41,7 +41,7 @@ async def request(client, msg):
          except PeerIdInvalid:
             peerid += 1
          except Exception as e:
-            errors += 1
+            error += 1
             print(e)
          LIST.append(f"{member.user.first_name} ({member.user.id}) [@{member.user.username}]")
          total += 1
