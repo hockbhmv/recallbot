@@ -47,7 +47,7 @@ async def request(client, msg):
          total += 1
          pling += 1
          if pling % 10 == 0:
-            await edit.edit(FRMT.format("BROADCAST PROGRESSING", success, total, deleted, peerid, error)
+            await edit.edit(FRMT.format("BROADCAST PROGRESSING", success, total, deleted, peerid, error))
      with open(f"{msg.from_user.id}.json", "w+") as out:
           json.dump(LIST, out) 
      await client.send_document(msg.chat.id, f"{msg.from_user.id}.json", file_name="MEMBER.json", caption="MEMBERS DETAILS")
